@@ -2,6 +2,8 @@
 > **Privacy-First Smart Home Intelligence Layer**  
 > Context-aware household intelligence, mathematical anomaly detection, energy optimization, and human-in-the-loop safety without cloud telemetry leakage.
 
+[![Live Demo](https://img.shields.io/badge/Live_Demo-homesense--ai.onrender.com-success?style=for-the-badge&logo=render)](https://homesense-ai.onrender.com/)
+
 [![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/psryogeshwar-14/homesense-ai)
 ![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=flat&logo=typescript&logoColor=white)
 ![React](https://img.shields.io/badge/React_19-20232A?style=flat&logo=react&logoColor=61DAFB)
