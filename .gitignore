@@ -1,0 +1,30 @@
+# Dependencies
+node_modules/
+*/node_modules/
+
+# Production build outputs
+dist/
+client/dist/
+server/dist/
+
+# Environment and sensitive keys
+.env
+.env.local
+*.env
+
+# SQLite local database (can be reseeded on deploy)
+*.db-journal
+dev.db-journal
+
+# OS files & IDEs
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*

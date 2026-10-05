@@ -1,0 +1,25 @@
+{
+  "name": "homesense-ai",
+  "version": "1.0.0",
+  "description": "HomeSense AI - Privacy-First Smart Home Intelligence Layer",
+  "scripts": {
+    "postinstall": "npm --prefix client install && npm --prefix server install",
+    "dev:server": "npm --prefix server run dev",
+    "dev:client": "npm --prefix client run dev",
+    "build:client": "npm --prefix client run build",
+    "build:server": "npm --prefix server run build",
+    "prisma:push": "npm --prefix server run prisma:push",
+    "prisma:seed": "npm --prefix server run prisma:seed",
+    "build": "npm --prefix server run prisma:push && npm --prefix server run prisma:seed && npm run build:server && npm run build:client",
+    "start": "node server/dist/index.js"
+  },
+  "keywords": [
+    "smarthome",
+    "ai",
+    "iot",
+    "energy-optimizer",
+    "privacy-first"
+  ],
+  "author": "",
+  "license": "MIT"
+}

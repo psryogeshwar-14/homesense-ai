@@ -1,0 +1,86 @@
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Room {
+  id        String          @id @default(cuid())
+  name      String
+  floor     Int             @default(1)
+  devices   Device[]
+  readings  SensorReading[]
+  createdAt DateTime        @default(now())
+}
+
+model Device {
+  id          String        @id @default(cuid())
+  name        String
+  type        String        // 'LIGHT', 'FAN', 'SMART_PLUG', 'DOOR', 'HEATER', 'AC', 'TV'
+  roomId      String
+  isOnline    Boolean       @default(true)
+  powerState  Boolean       @default(false)
+  powerWatts  Float         @default(0)
+  brightness  Int?          @default(100)
+  speed       String?       @default("medium")
+  room        Room          @relation(fields: [roomId], references: [id], onDelete: Cascade)
+  events      DeviceEvent[]
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+}
+
+model SensorReading {
+  id          String   @id @default(cuid())
+  roomId      String
+  sensorType  String   // 'MOTION', 'TEMPERATURE', 'HUMIDITY', 'DOOR', 'POWER'
+  value       Float
+  unit        String
+  recordedAt  DateTime @default(now())
+  room        Room     @relation(fields: [roomId], references: [id], onDelete: Cascade)
+}
+
+model DeviceEvent {
+  id        String   @id @default(cuid())
+  deviceId  String
+  action    String
+  source    String   // 'USER', 'AI_RECOMMENDATION', 'AUTOMATION', 'SIMULATOR', 'ASSISTANT'
+  approved  Boolean  @default(false)
+  details   String?
+  createdAt DateTime @default(now())
+  device    Device   @relation(fields: [deviceId], references: [id], onDelete: Cascade)
+}
+
+model Recommendation {
+  id          String    @id @default(cuid())
+  title       String
+  reason      String
+  action      String    // 'TURN_OFF', 'TURN_ON', 'SET_BRIGHTNESS', 'REDUCE_SPEED'
+  deviceId    String?
+  confidence  Float
+  status      String    @default("PENDING") // 'PENDING', 'APPROVED', 'REJECTED'
+  category    String    @default("ENERGY")  // 'ENERGY', 'SAFETY', 'COMFORT'
+  savingsEst  Float?    @default(0)
+  createdAt   DateTime  @default(now())
+  resolvedAt  DateTime?
+}
+
+model HomeState {
+  id          String   @id @default("global")
+  isOccupied  Boolean  @default(true)
+  mode        String   @default("HOME") // 'HOME', 'AWAY', 'NIGHT', 'FOCUS'
+  updatedAt   DateTime @updatedAt
+}
+
+model AnomalyLog {
+  id          String   @id @default(cuid())
+  title       String
+  description String
+  score       Float
+  severity    String   // 'LOW', 'MEDIUM', 'HIGH'
+  roomId      String?
+  deviceId    String?
+  createdAt   DateTime @default(now())
+}
