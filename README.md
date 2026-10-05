@@ -26,6 +26,18 @@ Current smart home assistants either rely on rigid, fragile "if-this-then-that" 
 
 ---
 
+## 📸 Interface Previews
+
+| Live Smart Home Dashboard | Explainable AI Recommendations & Safety |
+|---|---|
+| ![Dashboard Overview](docs/assets/dashboard_overview.png) | ![AI Recommendations](docs/assets/ai_recommendations.png) |
+
+> 📌 **Quick Documentation Links**:
+> - 📊 **[Pitch Deck Outline (8 Slides)](docs/PITCH_DECK.md)**
+> - 🎬 **[11-Step Interactive Demo Walkthrough Guide](docs/WALKTHROUGH.md)**
+
+---
+
 ## 🏗️ System Architecture
 
 ```
